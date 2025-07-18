@@ -1,3 +1,17 @@
+import { Grid } from "@mui/material";
+
 export default function ProductList({ products }) {
-  return <div>{products.map((p) => p.title)}</div>;
+  return (
+    <Grid container spacing={2}>
+      {products.map((p) => (
+        <Grid
+          sx={{ backgroundColor: "primary.light" }}
+          key={p.id}
+          size={{ xs: 6, md: 4, lg: 3 }}
+        >
+          {p.title}
+        </Grid>
+      ))}
+    </Grid>
+  );
 }
