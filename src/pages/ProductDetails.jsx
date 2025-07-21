@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ProductItem from "../components/ProductItem";
+import Loading from "../components/Loading";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -22,7 +23,7 @@ export default function ProductDetailsPage() {
     fetchProductDetail();
   }, [id]);
 
-  if (loading) return <h1>Loading....</h1>;
+  if (loading) return <Loading message="Yükleniyor..."></Loading>;
 
   return <ProductItem product={product}></ProductItem>;
 }
