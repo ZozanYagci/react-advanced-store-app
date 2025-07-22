@@ -6,6 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const links = [
   { title: "Home", to: "/" },
   { title: "Products", to: "/products" },
+  { title: "Error", to: "/errors" },
 ];
 
 const authLinks = [
@@ -15,14 +16,19 @@ const authLinks = [
 
 export default function Navbar() {
   return (
-    <AppBar position="static" sx ={{backgroundColor:"secondary.light"}}>
+    <AppBar position="static" sx={{ backgroundColor: "secondary.light" }}>
       <Toolbar>
         <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
           <IconButton color="inherit">
             <StorefrontIcon />
           </IconButton>
           {links.map((link) => (
-            <Button key={link.to} component={NavLink} to={link.to} color="inherit">
+            <Button
+              key={link.to}
+              component={NavLink}
+              to={link.to}
+              color="inherit"
+            >
               {link.title}
             </Button>
           ))}
@@ -41,7 +47,12 @@ export default function Navbar() {
             </Badge>
           </IconButton>
           {authLinks.map((link) => (
-            <Button key={link.to} component={NavLink} to={link.to} color="inherit">
+            <Button
+              key={link.to}
+              component={NavLink}
+              to={link.to}
+              color="inherit"
+            >
               {link.title}
             </Button>
           ))}
