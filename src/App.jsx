@@ -8,6 +8,7 @@ import MainLayout from "./layouts/Main";
 import ProductDetailsPage from "./pages/ProductDetails";
 import ErrorPage from "./pages/errors/Error";
 import ServerErrorPage from "./pages/errors/ServerError";
+import NotFoundPage from "./pages/errors/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -31,9 +32,11 @@ export const router = createBrowserRouter([
         path: "errors",
         children: [
           { index: true, element: <ErrorPage /> },
-          { path: "server-error", element: <ServerErrorPage/> },
+          { path: "server-error", element: <ServerErrorPage /> },
+          { path: "not-found", element: <NotFoundPage /> },
         ],
       },
+      { path: "*", element: <NotFoundPage></NotFoundPage> },
     ],
   },
 ]);
