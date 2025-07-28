@@ -13,22 +13,12 @@ import {
 } from "@mui/material";
 import { currenyTRY } from "../utils/formats";
 import { Delete } from "@mui/icons-material";
-import Loading from "../components/Loading";
+import { useCartContext } from "../context/CartContext";
 
 export default function CartPage() {
-  const [cart, setCart] = useState(null);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    requests.cart
-      .get()
-      .then((cart) => setCart(cart))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const { cart } = useCartContext();
 
-  if (loading) return <Loading message="Yükleniyor"></Loading>;
-
-  if (!cart)
+  if (!cart || cart.cartItems.length === 0)
     return <Typography component="h4">Sepetinizde ürün yok</Typography>;
 
   return (
