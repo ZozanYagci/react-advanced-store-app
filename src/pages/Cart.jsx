@@ -89,12 +89,12 @@ export default function CartPage() {
                   onClick={() =>
                     handleRemoveItem(
                       item.product.productId,
-                      "remove_all" + item.product.productId
+                      "remove" + item.product.productId
                     )
                   }
                 >
                   {status.loading &&
-                  status.id === "remove_all" + item.product.productId ? (
+                  status.id === "remove" + item.product.productId ? (
                     <CircularProgress size="20px"></CircularProgress>
                   ) : (
                     <RemoveCircleOutlineIcon />
@@ -109,12 +109,18 @@ export default function CartPage() {
                   onClick={() =>
                     handleRemoveItem(
                       item.product.productId,
+                      "remove_all" + item.product.productId,
                       item.product.quantity
                     )
                   }
                   color="error"
                 >
-                  {loading ? <CircularProgress size="20px" /> : <Delete />}
+                  {status.loading &&
+                  status.id === "remove_all" + item.product.productId ? (
+                    <CircularProgress size="20px" />
+                  ) : (
+                    <Delete />
+                  )}
                 </Button>
               </TableCell>
             </TableRow>
