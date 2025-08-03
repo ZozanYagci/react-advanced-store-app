@@ -1,7 +1,6 @@
 import {
   Button,
   CircularProgress,
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -11,17 +10,19 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { currenyTRY } from "../utils/formats";
+import { currenyTRY } from "../../utils/formats";
 import { Delete } from "@mui/icons-material";
-import { useCartContext } from "../context/CartContext";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { useState } from "react";
-import requests from "../api/apiClient";
+import requests from "../../api/apiClient";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart } from "./cartSlice";
 
 export default function CartPage() {
-  const { cart, setCart } = useCartContext();
   const [status, setStatus] = useState({ loading: false, id: "" });
+  const { cart } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   const subTotal = cart?.cartItems.reduce(
     (toplam, item) => toplam + item.product.price * item.product.quantity,
@@ -37,7 +38,7 @@ export default function CartPage() {
     setStatus({ loading: true, id: id });
     requests.cart
       .addItem(productId)
-      .then((cart) => setCart(cart))
+      .then((cart) => dispatch(setCart(cart)))
       .catch((error) => console.log(error))
       .finally(() => setStatus({ loading: false, id: "" }));
   }
@@ -45,7 +46,7 @@ export default function CartPage() {
     setStatus({ loading: true, id: id });
     requests.cart
       .deleteItem(productId, quantity)
-      .then((cart) => setCart(cart))
+      .then((cart) => dispatch(setCart(cart)))
       .catch((error) => console.log(error))
       .finally(() => setStatus({ loading: false, id: "" }));
   }
