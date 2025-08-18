@@ -36,14 +36,14 @@ export default function Navbar() {
     0
   );
 
-  const [anchorEl, setAnchotEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   function handleClick(event) {
-    setAnchotEl(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   }
-  function handleclose() {
-    setAnchotEl(null);
+  function handleClose() {
+    setAnchorEl(null);
   }
 
   return (
@@ -92,7 +92,7 @@ export default function Navbar() {
                 id="user-menu"
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleclose}
+                onClose={handleClose}
               >
                 <MenuItem component={Link} to="/orders">
                   Orders
